@@ -8,6 +8,7 @@ const refs = {
 
 refs.form.addEventListener('submit', submitForm);
 refs.form.addEventListener('input', throttle(inputAllFormData, 500));
+refs.form.addEventListener('input', inputAllFormData);
 
 const STORAGE_KEY = 'feedback-form-state';
 
@@ -22,17 +23,19 @@ function inputAllFormData(e) {
 }
 
 function submitForm(e) {
+  console.log('EMAIL :', refs.inputEmail.value);
+  console.log('FEEDBACK :', refs.textarea.value);
   e.preventDefault();
   e.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
 }
 
 function saveDataForm() {
-//   localStorage.getItem(STORAGE_KEY);
+  //   localStorage.getItem(STORAGE_KEY);
   const message = localStorage.getItem(STORAGE_KEY);
   const messageJSON = JSON.parse(message);
   if (messageJSON) {
-    inputEmail.value = messageJSON.email;
-    textarea.value = messageJSON.message;
+    refs.inputEmail.value = messageJSON.email;
+    refs.textarea.value = messageJSON.message;
   }
 }
