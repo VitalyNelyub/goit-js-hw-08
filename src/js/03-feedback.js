@@ -23,8 +23,10 @@ function inputAllFormData(e) {
 }
 
 function submitForm(e) {
-  console.log('EMAIL :', refs.inputEmail.value);
-  console.log('FEEDBACK :', refs.textarea.value);
+  console.log({
+    userMail: refs.inputEmail.value,
+    userFedback: refs.textarea.value,
+  });
   e.preventDefault();
   e.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
